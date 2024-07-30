@@ -1,0 +1,44 @@
+Feature: Search and Purchase Product
+
+  Scenario: Search for a product and purchase it successfully
+    Given the user is on the homepage
+    When the user searches for "laptop"
+    Then the search results page is displayed
+    And the search results contain "laptop"
+
+    When the user selects the first product from the search results
+    Then the product details page is displayed
+    And the product title contains "laptop"
+
+    When the user adds the product to the cart
+    Then the cart page is displayed
+    And the cart contains the selected product
+
+    When the user proceeds to checkout
+    Then the checkout page is displayed
+
+    When the user enters the shipping information
+      | Field          | Value                 |
+      | First Name     | John                  |
+      | Last Name      | Doe                   |
+      | Address        | 123 Main St           |
+      | City           | Anytown               |
+      | State          | CA                    |
+      | Zip Code       | 12345                 |
+      | Country        | USA                   |
+      | Phone Number   | 555-1234              |
+      | Email          | john.doe@example.com  |
+    And the user enters the payment information
+      | Field          | Value                 |
+      | Card Number    | 4111 1111 1111 1111   |
+      | Expiration     | 12/24                 |
+      | CVV            | 123                   |
+
+    When the user reviews the order
+    Then the order summary is displayed
+    And the order total is correct
+
+    When the user confirms the order
+    Then the order confirmation page is displayed
+    And the confirmation message contains "Thank you for your purchase"
+    And the order number is displayed
